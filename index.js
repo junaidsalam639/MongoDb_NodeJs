@@ -13,7 +13,7 @@ const Port = 9000;
 app.options("*", cors(corsConfig));
 app.use(cors(corsConfig));
 app.use(express.json());
-app.use("https://mongo-db-node-js-five.vercel.app/users", User);
+app.use("/users", User);
 
 
 mongoose.connect("mongodb+srv://junaidsalam639:5qkb1exmZCJFIO0P@cluster0.g91jxfi.mongodb.net/").then(() => {
