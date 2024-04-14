@@ -7,13 +7,14 @@ const corsConfig = {
     credentials : true,
     methods : ["GET", "POST", "PUT", "DELETE"],
 }
-const User = require("./Routes/UserRoutes");
+// const User = require("./Routes/UserRoutes");
+const Users = require("./Schema/UserSchema");
 const Port = 9000;
 
 app.options("*", cors(corsConfig));
 app.use(cors(corsConfig));
 app.use(express.json());
-app.use("/users", User);
+// app.use("/users", User);
 
 
 mongoose.connect("mongodb+srv://junaidsalam639:5qkb1exmZCJFIO0P@cluster0.g91jxfi.mongodb.net/").then(() => {
@@ -23,10 +24,19 @@ mongoose.connect("mongodb+srv://junaidsalam639:5qkb1exmZCJFIO0P@cluster0.g91jxfi
 });
 
 
-app.get("/", (req, res) => {
+// app.get("/", (req, res) => {
+//     res.send({
+//         status : "OK",
+//         message : "Hello World"
+//     });
+// })
+
+app.get("/", async (req, res) => {
+    const user = await Users.find();
     res.send({
         status : "OK",
-        message : "Hello World"
+        message : "User Get Success",
+        data : user,
     });
 })
 
