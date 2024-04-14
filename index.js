@@ -5,7 +5,7 @@ const cors = require("cors");
 const User = require("./Routes/UserRoutes");
 const Port = 9000;
 
-app.use(cors(corsConfig));
+app.use(cors());
 app.use(express.json());
 app.use("/users", User);
 
